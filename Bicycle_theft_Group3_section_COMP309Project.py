@@ -4,55 +4,85 @@ import pandas as pd
 
 import os
 
-# Folder containing the CSV file
+
 path = r"C:\SEMESTER\COMP DATAWAREHOUSE\Project"
 
-# CSV filename
+
 filename = "Bicycle_Thefts.csv"
 
-# Combine folder and filename
+
 fullpath = os.path.join(path, filename)
 
-# Load the dataset
+
 data_maina = pd.read_csv(fullpath)
 
-# a. Display column names
-print("Column names:")
+
+print("\n-----------Column names:")
 print(data_maina.columns)
 
-# b. Display shape
-print("\nShape:")
+
+print("\n----------Shape:")
 print(data_maina.shape)
 
-# c. Display summary statistics
-print("\nSummary statistics:")
+
+print("\n--------------Summary statistics:")
 print(data_maina.describe())
 
-# d. Display data types
-print("\nData types:")
+
+print("\n-----------------Data types:")
 print(data_maina.dtypes)
 
-# e. Display the first five records
-print("\nFirst five records:")
+
+print("\n------------------First five records:")
 print(data_maina.head())
 
-# f. Dataset information
-print("\n========== DATASET INFO ==========")
+
+print("\n-----------DATASET:")
 print(data_maina.info())
 
-# G. Missing values
-print("\n========== MISSING VALUES ==========")
+
+print("\n-------------MISSING VALUES:")
 print(data_maina.isnull().sum())
 
-# H. Number of unique values
-print("\n========== UNIQUE VALUES ==========")
+
+print("\n----------- UNIQUE VALUES:")
 print(data_maina.nunique())
 
-# I. Sample values for categorical columns
-print("\n========== SAMPLE CATEGORICAL VALUES ==========")
+
+print("\n-------- SAMPLE CATEGORICAL VALUES:")
 
 categorical_columns = data_maina.select_dtypes(include=['object']).columns
 
 for column in categorical_columns:
     print(f"\n{column}")
     print(data_maina[column].value_counts().head(10))
+    
+#B STATISTIC ASSESSMENTS
+
+import numpy as np
+
+
+print("\n--------Find Numerical columns:")
+print(data_maina.select_dtypes(include=np.number).columns)  
+
+print("\n-------------Calculate Mean:")
+mean_value = data_maina.select_dtypes(include=np.number).mean()
+
+print(mean_value)
+
+print("\n---------------Calculate Median:")
+median_values = data_maina.select_dtypes(include=np.number).median()
+
+print(median_values)
+
+print ("\n----------------Calculate Standard Deviation:")
+std_values = data_maina.select_dtypes(include=np.number).std()
+
+print(std_values)
+
+print("\n----------------------Correlation analysis")
+correlation =data_maina.select_dtypes(include=np.number).corr()
+
+print(correlation)
+
+print("\n-----------Minimum ")
