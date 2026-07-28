@@ -245,5 +245,63 @@ plt.ylabel("Column Name")
 plt.show()
 
 
+#=================================================================
+# b) DATA MODELING (PREDICT OUTCOME OF A BIKE THEFT USING INFOR) #
+#=================================================================
+
+
+print("b) DATA MODELING (PREDICT OUTCOME OF A BIKE THEFT USING INFOR)")
+
+
+Y = data_maina["STATUS"]
+
+features = [
+
+"OCC_YEAR",
+"OCC_MONTH",
+"OCC_DOW",
+"OCC_DAY",
+"OCC_DOY",
+"OCC_HOUR",
+
+"REPORT_YEAR",
+"REPORT_MONTH",
+"REPORT_DOW",
+"REPORT_DAY",
+"REPORT_DOY",
+"REPORT_HOUR",
+
+"DIVISION",
+"LOCATION_TYPE",
+"PREMISES_TYPE",
+
+"BIKE_MAKE",
+"BIKE_MODEL",
+"BIKE_TYPE",
+"BIKE_SPEED",
+"BIKE_COLOUR",
+"BIKE_COST",
+
+"PRIMARY_OFFENCE",
+
+"HOOD_158",
+"NEIGHBOURHOOD_158",
+"HOOD_140",
+"NEIGHBOURHOOD_140",
+
+"LONG_WGS84",
+"LAT_WGS84"
+
+]
+
+x=data_maina[features]
+
+print(x.head())
+
+print("\n Shape:-")
+print(x.shape)
+
+print("\n Missing Values:-")
+print(x.isnull().sum())
 
 
