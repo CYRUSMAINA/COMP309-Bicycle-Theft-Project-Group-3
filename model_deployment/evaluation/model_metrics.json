@@ -1,0 +1,46 @@
+{
+  "Logistic Regression": {
+    "accuracy": 0.767771344092645,
+    "balanced_accuracy": 0.5649630674311278,
+    "precision": 0.015574650912996778,
+    "recall": 0.35802469135802467,
+    "f1_score": 0.029850746268656716,
+    "roc_auc": 0.5882924985712442,
+    "confusion_matrix": [
+      [
+        6203,
+        1833
+      ],
+      [
+        52,
+        29
+      ]
+    ],
+    "true_negative": 6203,
+    "false_positive": 1833,
+    "false_negative": 52,
+    "true_positive": 29
+  },
+  "Decision Tree": {
+    "accuracy": 0.771590489096957,
+    "balanced_accuracy": 0.6402193216943508,
+    "precision": 0.022102425876010783,
+    "recall": 0.5061728395061729,
+    "f1_score": 0.042355371900826444,
+    "roc_auc": 0.6523921673457097,
+    "confusion_matrix": [
+      [
+        6222,
+        1814
+      ],
+      [
+        40,
+        41
+      ]
+    ],
+    "true_negative": 6222,
+    "false_positive": 1814,
+    "false_negative": 40,
+    "true_positive": 41
+  }
+}

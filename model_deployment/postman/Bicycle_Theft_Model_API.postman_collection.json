@@ -1,0 +1,60 @@
+{
+  "info": {
+    "name": "COMP309 Bicycle Theft Model API",
+    "description": "Tests the Flask model service with one record held out from training.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:5000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health check",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Predict bicycle recovery",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"OCC_YEAR\": 2017,\n  \"OCC_DAY\": 12,\n  \"OCC_HOUR\": 10,\n  \"BIKE_SPEED\": 12.0,\n  \"BIKE_COST\": 1600.0,\n  \"LONG_WGS84\": -79.3351800235357,\n  \"LAT_WGS84\": 43.7312574225869,\n  \"OCC_MONTH\": \"October\",\n  \"OCC_DOW\": \"Thursday\",\n  \"DIVISION\": \"D33\",\n  \"LOCATION_TYPE\": \"Single Home, House (Attach Garage, Cottage, Mobile)\",\n  \"PREMISES_TYPE\": \"House\",\n  \"BIKE_MAKE\": \"TREK\",\n  \"BIKE_TYPE\": \"RG\",\n  \"BIKE_COLOUR\": \"BLKONG\",\n  \"NEIGHBOURHOOD_158\": \"Banbury-Don Mills (42)\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/predict",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "predict"
+          ]
+        }
+      }
+    }
+  ]
+}

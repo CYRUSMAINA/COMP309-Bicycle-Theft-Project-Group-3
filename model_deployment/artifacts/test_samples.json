@@ -1,0 +1,222 @@
+[
+  {
+    "features": {
+      "OCC_YEAR": 2017,
+      "OCC_DAY": 12,
+      "OCC_HOUR": 10,
+      "BIKE_SPEED": 12.0,
+      "BIKE_COST": 1600.0,
+      "LONG_WGS84": -79.3351800235357,
+      "LAT_WGS84": 43.7312574225869,
+      "OCC_MONTH": "October",
+      "OCC_DOW": "Thursday",
+      "DIVISION": "D33",
+      "LOCATION_TYPE": "Single Home, House (Attach Garage, Cottage, Mobile)",
+      "PREMISES_TYPE": "House",
+      "BIKE_MAKE": "TREK",
+      "BIKE_TYPE": "RG",
+      "BIKE_COLOUR": "BLKONG",
+      "NEIGHBOURHOOD_158": "Banbury-Don Mills (42)"
+    },
+    "expected_class": "RECOVERED",
+    "expected_recovered": true
+  },
+  {
+    "features": {
+      "OCC_YEAR": 2024,
+      "OCC_DAY": 26,
+      "OCC_HOUR": 19,
+      "BIKE_SPEED": 12.0,
+      "BIKE_COST": 200.0,
+      "LONG_WGS84": -79.4876543455482,
+      "LAT_WGS84": 43.7063712528065,
+      "OCC_MONTH": "June",
+      "OCC_DOW": "Wednesday",
+      "DIVISION": "D12",
+      "LOCATION_TYPE": "Apartment (Rooming House, Condo)",
+      "PREMISES_TYPE": "Apartment",
+      "BIKE_MAKE": "OTHER",
+      "BIKE_TYPE": "MT",
+      "BIKE_COLOUR": "BLKGLD",
+      "NEIGHBOURHOOD_158": "Maple Leaf (29)"
+    },
+    "expected_class": "RECOVERED",
+    "expected_recovered": true
+  },
+  {
+    "features": {
+      "OCC_YEAR": 2021,
+      "OCC_DAY": 19,
+      "OCC_HOUR": 8,
+      "BIKE_SPEED": 8.0,
+      "BIKE_COST": 1040.0,
+      "LONG_WGS84": -79.4048993316988,
+      "LAT_WGS84": 43.6424892832262,
+      "OCC_MONTH": "October",
+      "OCC_DOW": "Tuesday",
+      "DIVISION": "D14",
+      "LOCATION_TYPE": "Private Property Structure (Pool, Shed, Detached Garage)",
+      "PREMISES_TYPE": "Other",
+      "BIKE_MAKE": "TR",
+      "BIKE_TYPE": "RC",
+      "BIKE_COLOUR": "DBL",
+      "NEIGHBOURHOOD_158": "West Queen West (162)"
+    },
+    "expected_class": "RECOVERED",
+    "expected_recovered": true
+  },
+  {
+    "features": {
+      "OCC_YEAR": 2016,
+      "OCC_DAY": 21,
+      "OCC_HOUR": 1,
+      "BIKE_SPEED": 1.0,
+      "BIKE_COST": 700.0,
+      "LONG_WGS84": -79.4172607275784,
+      "LAT_WGS84": 43.6474436913109,
+      "OCC_MONTH": "April",
+      "OCC_DOW": "Thursday",
+      "DIVISION": "D14",
+      "LOCATION_TYPE": "Single Home, House (Attach Garage, Cottage, Mobile)",
+      "PREMISES_TYPE": "House",
+      "BIKE_MAKE": "MASI",
+      "BIKE_TYPE": "RC",
+      "BIKE_COLOUR": "BLU",
+      "NEIGHBOURHOOD_158": "Trinity-Bellwoods (81)"
+    },
+    "expected_class": "RECOVERED",
+    "expected_recovered": true
+  },
+  {
+    "features": {
+      "OCC_YEAR": 2020,
+      "OCC_DAY": 6,
+      "OCC_HOUR": 19,
+      "BIKE_SPEED": 1.0,
+      "BIKE_COST": 800.0,
+      "LONG_WGS84": -79.38517394513,
+      "LAT_WGS84": 43.6592373983412,
+      "OCC_MONTH": "July",
+      "OCC_DOW": "Monday",
+      "DIVISION": "D52",
+      "LOCATION_TYPE": "Apartment (Rooming House, Condo)",
+      "PREMISES_TYPE": "Apartment",
+      "BIKE_MAKE": "UK",
+      "BIKE_TYPE": "RG",
+      "BIKE_COLOUR": "BLK",
+      "NEIGHBOURHOOD_158": "Yonge-Bay Corridor (170)"
+    },
+    "expected_class": "RECOVERED",
+    "expected_recovered": true
+  },
+  {
+    "features": {
+      "OCC_YEAR": 2014,
+      "OCC_DAY": 28,
+      "OCC_HOUR": 11,
+      "BIKE_SPEED": 21.0,
+      "BIKE_COST": 0.0,
+      "LONG_WGS84": -79.470432597985,
+      "LAT_WGS84": 43.6854575000506,
+      "OCC_MONTH": "June",
+      "OCC_DOW": "Saturday",
+      "DIVISION": "D12",
+      "LOCATION_TYPE": "Private Property Structure (Pool, Shed, Detached Garage)",
+      "PREMISES_TYPE": "Other",
+      "BIKE_MAKE": "UK",
+      "BIKE_TYPE": "RG",
+      "BIKE_COLOUR": null,
+      "NEIGHBOURHOOD_158": "Keelesdale-Eglinton West (110)"
+    },
+    "expected_class": "NOT RECOVERED",
+    "expected_recovered": false
+  },
+  {
+    "features": {
+      "OCC_YEAR": 2026,
+      "OCC_DAY": 14,
+      "OCC_HOUR": 0,
+      "BIKE_SPEED": 10.0,
+      "BIKE_COST": 300.0,
+      "LONG_WGS84": -79.4041248355543,
+      "LAT_WGS84": 43.6607943030815,
+      "OCC_MONTH": "June",
+      "OCC_DOW": "Sunday",
+      "DIVISION": "D14",
+      "LOCATION_TYPE": "Single Home, House (Attach Garage, Cottage, Mobile)",
+      "PREMISES_TYPE": "House",
+      "BIKE_MAKE": "SUPE",
+      "BIKE_TYPE": "OT",
+      "BIKE_COLOUR": "BLK",
+      "NEIGHBOURHOOD_158": "University (79)"
+    },
+    "expected_class": "NOT RECOVERED",
+    "expected_recovered": false
+  },
+  {
+    "features": {
+      "OCC_YEAR": 2021,
+      "OCC_DAY": 8,
+      "OCC_HOUR": 23,
+      "BIKE_SPEED": 1.0,
+      "BIKE_COST": 500.0,
+      "LONG_WGS84": -79.4159596280202,
+      "LAT_WGS84": 43.6502874947112,
+      "OCC_MONTH": "October",
+      "OCC_DOW": "Friday",
+      "DIVISION": "D14",
+      "LOCATION_TYPE": "Apartment (Rooming House, Condo)",
+      "PREMISES_TYPE": "Apartment",
+      "BIKE_MAKE": "OTHER",
+      "BIKE_TYPE": "RC",
+      "BIKE_COLOUR": "BLK",
+      "NEIGHBOURHOOD_158": "Trinity-Bellwoods (81)"
+    },
+    "expected_class": "NOT RECOVERED",
+    "expected_recovered": false
+  },
+  {
+    "features": {
+      "OCC_YEAR": 2019,
+      "OCC_DAY": 16,
+      "OCC_HOUR": 17,
+      "BIKE_SPEED": 0.0,
+      "BIKE_COST": 9600.0,
+      "LONG_WGS84": -79.4062233357913,
+      "LAT_WGS84": 43.7276809740355,
+      "OCC_MONTH": "May",
+      "OCC_DOW": "Thursday",
+      "DIVISION": "D32",
+      "LOCATION_TYPE": "Private Property Structure (Pool, Shed, Detached Garage)",
+      "PREMISES_TYPE": "Other",
+      "BIKE_MAKE": "CANNONDALE",
+      "BIKE_TYPE": "MT",
+      "BIKE_COLOUR": "BLKGRN",
+      "NEIGHBOURHOOD_158": "Lawrence Park North (105)"
+    },
+    "expected_class": "NOT RECOVERED",
+    "expected_recovered": false
+  },
+  {
+    "features": {
+      "OCC_YEAR": 2021,
+      "OCC_DAY": 24,
+      "OCC_HOUR": 14,
+      "BIKE_SPEED": 21.0,
+      "BIKE_COST": 4384.0,
+      "LONG_WGS84": -79.3412440710106,
+      "LAT_WGS84": 43.6421053842902,
+      "OCC_MONTH": "April",
+      "OCC_DOW": "Saturday",
+      "DIVISION": "D51",
+      "LOCATION_TYPE": "Open Areas (Lakes, Parks, Rivers)",
+      "PREMISES_TYPE": "Outside",
+      "BIKE_MAKE": "OT",
+      "BIKE_TYPE": "TO",
+      "BIKE_COLOUR": "BLK",
+      "NEIGHBOURHOOD_158": "South Riverdale (70)"
+    },
+    "expected_class": "NOT RECOVERED",
+    "expected_recovered": false
+  }
+]

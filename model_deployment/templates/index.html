@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bicycle Recovery Prediction</title>
+    <style>
+      :root { color-scheme: light; font-family: Arial, sans-serif; }
+      body { background: #eef3f8; color: #14213d; margin: 0; }
+      main { max-width: 1000px; margin: 0 auto; padding: 28px 18px 50px; }
+      header, form, .result, .error { background: white; border-radius: 12px; padding: 22px; box-shadow: 0 5px 20px #17324d18; margin-bottom: 18px; }
+      h1 { margin: 0 0 8px; }
+      .subtitle { color: #486581; margin: 0; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+      label { display: block; font-weight: 700; margin-bottom: 6px; }
+      small { display: block; color: #627d98; min-height: 32px; margin-bottom: 5px; }
+      input { box-sizing: border-box; width: 100%; padding: 10px; border: 1px solid #bcccdc; border-radius: 7px; }
+      button { background: #006d77; color: white; border: 0; border-radius: 8px; padding: 12px 20px; font-size: 1rem; font-weight: 700; margin-top: 20px; cursor: pointer; }
+      .result { border-left: 6px solid #006d77; }
+      .error { border-left: 6px solid #c1121f; color: #8d0801; }
+      .probability { font-size: 1.8rem; font-weight: 700; color: #006d77; }
+      footer { color: #627d98; font-size: .9rem; }
+      code { background: #e6edf5; padding: 2px 5px; border-radius: 4px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Bicycle Recovery Prediction</h1>
+        <p class="subtitle">COMP309 Group 3 model API demonstration</p>
+      </header>
+
+      {% if error %}<section class="error"><strong>Error:</strong> {{ error }}</section>{% endif %}
+      {% if prediction %}
+        <section class="result">
+          <h2>{{ prediction.prediction }}</h2>
+          <div class="probability">{{ "%.2f"|format(prediction.recovery_probability * 100) }}% recovery probability</div>
+          <p>Selected model: {{ prediction.model }}</p>
+          <p>{{ prediction.disclaimer }}</p>
+        </section>
+      {% endif %}
+
+      <form method="post">
+        <div class="grid">
+          {% for feature in schema.features %}
+            <div>
+              <label for="{{ feature.name }}">{{ feature.name }}</label>
+              <small>{{ feature.description }}</small>
+              <input
+                id="{{ feature.name }}"
+                name="{{ feature.name }}"
+                type="{{ 'number' if feature.type == 'number' else 'text' }}"
+                {% if feature.type == 'number' %}step="any"{% endif %}
+                value="{{ '' if values[feature.name] is none else values[feature.name] }}"
+                {% if feature.suggested_values %}list="{{ feature.name }}_values"{% endif %}
+                required>
+              {% if feature.suggested_values %}
+                <datalist id="{{ feature.name }}_values">
+                  {% for option in feature.suggested_values %}<option value="{{ option }}">{% endfor %}
+                </datalist>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+        <button type="submit">Predict recovery</button>
+      </form>
+
+      <footer>
+        JSON clients can send the same fields to <code>POST /predict</code>.
+        See <code>GET /api/schema</code> for the complete API schema.
+      </footer>
+    </main>
+  </body>
+</html>
