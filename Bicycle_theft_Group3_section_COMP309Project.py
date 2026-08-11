@@ -463,3 +463,329 @@ print(pd.Series(Y_train).value_counts())
 print("\nAfter:")
 print(pd.Series(Y_train_smote).value_counts())
 
+
+#----------------------------------------#
+#          MODEL BUILDING                #
+#----------------------------------------#
+
+
+
+from sklearn.linear_model import LogisticRegression 
+
+#a)create LR model
+logistic_model = LogisticRegression(
+    max_iter = 1000,
+    random_state = 42
+    )
+#train model
+logistic_model.fit(
+    X_train_smote,
+    Y_train_smote)
+
+print("Model trained.")
+print("Here is the Model:")
+print(logistic_model)
+
+print(" Training records:")
+print(X_train_smote.shape[0])
+
+print("Feature:")
+print(X_train_smote.shape[1])
+
+#b)LR predictions
+
+#Use test data to make prediction
+
+Y_pred_logistic =logistic_model.predict(X_test)
+
+print("Logistic Regressions Predictions")
+
+print("Predicted first 10 values:")
+print(Y_pred_logistic[:10])
+
+print("Actual values of 10:")
+print(Y_test[:10])
+
+#c)LR model Score
+
+from sklearn.metrics import accuracy_score
+
+logistic_accuracy = accuracy_score(
+    Y_test,
+    Y_pred_logistic
+    )
+
+print("Logistic Regression Accuracy:")
+
+print("Accuracy:",logistic_accuracy)
+print("Accuracy % ",logistic_accuracy*100)
+
+#LogisticR CONFUSION MATRIX
+
+from sklearn.metrics import confusion_matrix,ConfusionMatrixDisplay
+import matplotlib.pyplot as plt
+
+#create confusion matrics
+con_logistic = confusion_matrix (
+    Y_test,
+    Y_pred_logistic
+    )
+print("Logistic Regression CONFUSION MATRIX")
+print(con_logistic)
+
+#Dispaly ConfusionM
+ 
+disp = ConfusionMatrixDisplay(
+    confusion_matrix=con_logistic,
+    display_labels=label_encoder.classes_
+    )
+disp.plot()
+
+plt.title("Logistic Regression Confusion Matrix")
+plt.show()
+
+print(label_encoder.classes_)
+
+#LOGISTIC REGRESSION ROC CURVE
+
+from sklearn.metrics import roc_curve, auc
+from sklearn.preprocessing import label_binarize
+import matplotlib.pyplot as plt
+
+#  test labels into binary 
+Y_test_binary = label_binarize(
+    Y_test,
+    classes=[0, 1, 2]
+)
+
+
+Y_probability = logistic_model.predict_proba(X_test)
+
+# Calculate ROC values
+fpr = {}
+tpr = {}
+roc_auc = {}
+
+for i in range(3):
+
+    fpr[i], tpr[i], _ = roc_curve(
+        Y_test_binary[:, i],
+        Y_probability[:, i]
+    )
+
+    roc_auc[i] = auc(
+        fpr[i],
+        tpr[i]
+    )
+
+#AUC results
+
+print("LOGISTIC REGRESSION ROC AUC:-")
+
+
+print("RECOVERED AUC:", roc_auc[0])
+print("STOLEN AUC:", roc_auc[1])
+print("UNKNOWN AUC:", roc_auc[2])
+
+
+# Plot ROC curves
+plt.figure(figsize=(8, 6))
+
+plt.plot(
+    fpr[0],
+    tpr[0],
+    label="RECOVERED (AUC = %.2f)" % roc_auc[0]
+)
+
+plt.plot(
+    fpr[1],
+    tpr[1],
+    label="STOLEN (AUC = %.2f)" % roc_auc[1]
+)
+
+plt.plot(
+    fpr[2],
+    tpr[2],
+    label="UNKNOWN (AUC = %.2f)" % roc_auc[2]
+)
+
+# Random guess
+plt.plot(
+    [0, 1],
+    [0, 1],
+    linestyle="--",
+    label="Random Guess"
+)
+
+plt.xlabel("False Positive Rate")
+plt.ylabel("True Positive Rate")
+
+plt.title("Logistic Regression ROC Curve")
+
+plt.legend()
+
+plt.grid()
+
+plt.show()
+
+
+#DECISION TREE
+
+
+from sklearn.tree import DecisionTreeClassifier
+
+# Create D T model
+decision_tree_model = DecisionTreeClassifier(
+    random_state=42
+)
+
+# Train the Decision Tree using SMOTE
+decision_tree_model.fit(
+    X_train_smote,
+    Y_train_smote
+)
+
+
+print("DECISION TREE MODEL TRAINED")
+
+
+print("Model:")
+print(decision_tree_model)
+
+print("\nTraining records:")
+print(X_train_smote.shape[0])
+
+print("\nNumber of features:")
+print(X_train_smote.shape[1])
+
+
+# Make predictions using the unseen test data
+Y_pred_tree = decision_tree_model.predict(X_test)
+
+print(" PREDICTIONS:")
+
+print("Predicted first 10 values:")
+print(Y_pred_tree[:10])
+
+print("Actual first 10 values:")
+print(Y_test[:10])
+
+
+from sklearn.metrics import accuracy_score
+
+tree_accuracy = accuracy_score(
+    Y_test,
+    Y_pred_tree
+)
+
+print("\nDECISION TREE ACCURACY")
+
+print("Accuracy:", tree_accuracy)
+
+print("Accuracy %:", tree_accuracy * 100)
+
+
+#DECISION TREEE CONFUSION MATRIX
+
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+
+tree_cm = confusion_matrix(
+    Y_test,
+    Y_pred_tree
+)
+
+print("DECISION TREE CONFUSION MATRIX")
+print(tree_cm)
+
+disp_tree = ConfusionMatrixDisplay(
+    confusion_matrix=tree_cm,
+    display_labels=label_encoder.classes_
+)
+
+disp_tree.plot()
+
+plt.title("Decision Tree Confusion Matrix")
+plt.show()
+
+
+# DECISION TREE ROC CURVE
+
+
+from sklearn.metrics import roc_curve, auc
+from sklearn.preprocessing import label_binarize
+
+# Convert test labels into binary format
+Y_test_binary_tree = label_binarize(
+    Y_test,
+    classes=[0, 1, 2]
+)
+
+# Get probability predictions from Decision Tree
+Y_probability_tree = decision_tree_model.predict_proba(X_test)
+
+# Calculate ROC values
+fpr_tree = {}
+tpr_tree = {}
+roc_auc_tree = {}
+
+for i in range(3):
+
+    fpr_tree[i], tpr_tree[i], _ = roc_curve(
+        Y_test_binary_tree[:, i],
+        Y_probability_tree[:, i]
+    )
+
+    roc_auc_tree[i] = auc(
+        fpr_tree[i],
+        tpr_tree[i]
+    )
+
+#AUC results
+print("DECISION TREE ROC AUC")
+
+
+print("RECOVERED AUC:", roc_auc_tree[0])
+print("STOLEN AUC:", roc_auc_tree[1])
+print("UNKNOWN AUC:", roc_auc_tree[2])
+
+
+# Plot ROC curves
+plt.figure(figsize=(8, 6))
+
+plt.plot(
+    fpr_tree[0],
+    tpr_tree[0],
+    label="RECOVERED (AUC = %.2f)" % roc_auc_tree[0]
+)
+
+plt.plot(
+    fpr_tree[1],
+    tpr_tree[1],
+    label="STOLEN (AUC = %.2f)" % roc_auc_tree[1]
+)
+
+plt.plot(
+    fpr_tree[2],
+    tpr_tree[2],
+    label="UNKNOWN (AUC = %.2f)" % roc_auc_tree[2]
+)
+
+# Random guessing line
+plt.plot(
+    [0, 1],
+    [0, 1],
+    linestyle="--",
+    label="Random Guess"
+)
+
+plt.xlabel("False Positive Rate")
+plt.ylabel("True Positive Rate")
+
+plt.title("Decision Tree ROC Curve")
+
+plt.legend()
+
+plt.grid()
+
+plt.show()
+
