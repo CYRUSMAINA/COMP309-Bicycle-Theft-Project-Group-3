@@ -84,3 +84,29 @@ button:hover {
   }
 }
 
+.result {
+  margin-top: 30px;
+  padding: 25px;
+  border-radius: 10px;
+  background: #eef7ee;
+  text-align: center;
+}
+
+.result h2 {
+  border: none;
+  margin-top: 0;
+}
+
+.prediction {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.error {
+  margin-top: 25px;
+  padding: 15px;
+  background: #ffecec;
+  color: #a00000;
+  border-radius: 7px;
+}
+

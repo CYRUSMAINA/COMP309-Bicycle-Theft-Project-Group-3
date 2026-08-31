@@ -38,6 +38,10 @@ function App() {
     NEIGHBOURHOOD_158: "Kensington-Chinatown",
     NEIGHBOURHOOD_140: "Kensington-Chinatown",
   });
+  const[prediction, setPrediction] = useState("");
+  const[error , setError] =useState("");
+  const[loading, setLoading]= useState(false);
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -47,6 +51,59 @@ function App() {
       [name]: value,
     });
   };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    setLoading(true);
+    setPrediction("");
+    setError("");
+
+    try{
+      const response = await fetch(
+        "http://127.0.0.1:5000/predict",{
+          method : "Post",
+          headers: {"Content-Type": "application/json",
+
+          },
+          body: JSON.stringify({
+          ...formData,
+
+          OCC_YEAR: Number(formData.OCC_YEAR),
+          OCC_DAY: Number(formData.OCC_DAY),
+          OCC_DOY: Number(formData.OCC_DOY),
+          OCC_HOUR: Number(formData.OCC_HOUR),
+
+          REPORT_YEAR: Number(formData.REPORT_YEAR),
+          REPORT_DAY: Number(formData.REPORT_DAY),
+          REPORT_DOY: Number(formData.REPORT_DOY),
+          REPORT_HOUR: Number(formData.REPORT_HOUR),
+
+          BIKE_SPEED: Number(formData.BIKE_SPEED),
+          BIKE_COST: Number(formData.BIKE_COST),
+
+          LONG_WGS84: Number(formData.LONG_WGS84),
+          LAT_WGS84: Number(formData.LAT_WGS84),
+        })
+        
+      }
+
+    );
+    const data = await response.json();
+
+    if(!response.ok){
+      throw new Error(data.error || "Prediction failed");
+    }
+    setPrediction(data.prediction);
+    
+  } catch(error) {
+    setError(error.message);
+  } finally { 
+    setLoading(false);
+
+  }
+   
+};
 
   return (
     <div className="app">
@@ -59,7 +116,7 @@ function App() {
           Enter bicycle and incident information to predict the theft status.
         </p>
 
-        <form>
+        <form onSubmit={handleSubmit}>
 
           {/* ================= INCIDENT INFORMATION ================= */}
 
@@ -358,11 +415,26 @@ function App() {
           </div>
 
 
-          <button type="submit">
-            Predict Bicycle Theft Status
+          <button type="submit" disabled = {loading}>
+           {loading ? "Predicting...."  : "Predict Bicycle Theft Status"} 
           </button>
 
         </form>
+
+        {prediction && (
+          <div className="result">
+            <h2>Prediction</h2>
+            <div className="prediction">
+              {prediction}
+              </div>
+              </div>
+        )}
+        {error &&(
+          <div className="error">
+            <strong>Error:</strong> {error}
+            </div>
+
+        )}
 
       </div>
 

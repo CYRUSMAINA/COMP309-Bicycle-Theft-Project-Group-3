@@ -789,3 +789,131 @@ plt.grid()
 
 plt.show()
 
+#MODEL SERIALIZATION
+
+
+import pickle
+import os
+
+# Project folder
+project_path = r"C:\SEMESTER\COMP DATAWAREHOUSE\Project"
+
+# Location where the model will be saved
+model_path = os.path.join(
+    project_path,
+    "logistic_model.pkl"
+)
+
+
+with open(model_path, "wb") as file:
+    pickle.dump(logistic_model, file)
+
+print("\nLogistic Regression model saved.")
+print("Model saved at:")
+print(model_path)
+
+
+
+# TEST DESERIALIZATION
+
+
+with open(model_path, "rb") as file:
+    loaded_logistic_model = pickle.load(file)
+
+print("\nLogistic Regression model loaded successfully.")
+
+# Make predictions using the loaded model
+loaded_predictions = loaded_logistic_model.predict(X_test)
+
+print("\nFirst 10 predictions from loaded model:")
+print(loaded_predictions[:10])
+
+print("\nFirst 10 predictions from original model:")
+print(Y_pred_logistic[:10])
+
+
+# SAVE PREPROCESSING OBJECTS
+
+
+# Save numerical imputer
+with open(os.path.join(project_path, "num_imputer.pkl"), "wb") as file:
+    pickle.dump(num_imputer, file)
+
+# Save categorical imputer
+with open(os.path.join(project_path, "cat_imputer.pkl"), "wb") as file:
+    pickle.dump(cat_imputer, file)
+
+# Save One-Hot Encoder
+with open(os.path.join(project_path, "encoder.pkl"), "wb") as file:
+    pickle.dump(encoder, file)
+
+# Save StandardScaler
+with open(os.path.join(project_path, "standard_scaler.pkl"), "wb") as file:
+    pickle.dump(standard_scaler, file)
+
+# Save SelectKBest feature selector
+with open(os.path.join(project_path, "selector.pkl"), "wb") as file:
+    pickle.dump(selector, file)
+
+# Save LabelEncoder
+with open(os.path.join(project_path, "label_encoder.pkl"), "wb") as file:
+    pickle.dump(label_encoder, file)
+
+print("\nAll preprocessing objects saved.")
+
+with open(os.path.join(project_path, "num_imputer.pkl"), "rb") as file:
+    loaded_num_imputer = pickle.load(file)
+
+with open(os.path.join(project_path, "cat_imputer.pkl"), "rb") as file:
+    loaded_cat_imputer = pickle.load(file)
+
+with open(os.path.join(project_path, "encoder.pkl"), "rb") as file:
+    loaded_encoder = pickle.load(file)
+
+with open(os.path.join(project_path, "standard_scaler.pkl"), "rb") as file:
+    loaded_standard_scaler = pickle.load(file)
+
+with open(os.path.join(project_path, "selector.pkl"), "rb") as file:
+    loaded_selector = pickle.load(file)
+
+with open(os.path.join(project_path, "label_encoder.pkl"), "rb") as file:
+    loaded_label_encoder = pickle.load(file)
+
+print("\nAll preprocessing objects loaded.")
+
+
+# TEST SAVED MODEL WITH SAVED PREPROCESSING
+
+
+# Load saved StandardScaler
+with open(os.path.join(project_path, "standard_scaler.pkl"), "rb") as file:
+    loaded_standard_scaler = pickle.load(file)
+
+# Load saved SelectKBest
+with open(os.path.join(project_path, "selector.pkl"), "rb") as file:
+    loaded_selector = pickle.load(file)
+
+# Load saved Logistic Regression model
+with open(os.path.join(project_path, "logistic_model.pkl"), "rb") as file:
+    loaded_logistic_model = pickle.load(file)
+
+# X_test is currently already standardized and feature-selected,
+# so for this verification we use the saved model directly.
+
+saved_model_predictions = loaded_logistic_model.predict(X_test)
+
+
+print("SAVED MODEL TEST")
+
+
+print("First 10 predictions using saved model:")
+print(saved_model_predictions[:10])
+
+print("\nFirst 10 predictions using original model:")
+print(Y_pred_logistic[:10])
+
+# Check whether predictions are identical
+if (saved_model_predictions == Y_pred_logistic).all():
+    print("\nSUCCESS: Saved model predictions match original model.")
+else:
+    print("\nWARNING: Predictions do not match.")
